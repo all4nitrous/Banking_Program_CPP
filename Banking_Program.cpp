@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip> // Working with float
 
 /* Namespaces */
 using std::cout;
@@ -13,7 +14,7 @@ double withdraw(double balance);
 int main() 
 {
 
-    double balance = 0;
+    double balance = 123;
     int choice = 0;
 
     do {
@@ -33,8 +34,10 @@ int main()
             case 1: showBalance(balance);
                     break;
             case 2: balance = balance += deposit();
+                    showBalance(balance);
                     break;
             case 3: balance -= withdraw(balance);
+                    showBalance(balance);
                     break;
             case 4: cout << "Thanks for visiting!" << endl;
                     break;
@@ -53,4 +56,22 @@ int main()
 
     return 0;
 
+}
+
+void showBalance(double balance) 
+{
+    cout << "Your balance is: $" << std::setprecision(2) << std::fixed << balance << endl; // Using iomanip function to create two decimal places
+}
+double deposit() 
+{
+
+    double amount = 0;
+    cout << "Enter amount to be deposited : " << endl;
+    cin >> amount;
+
+    return amount;
+}
+double withdraw(double balance) 
+{
+    return 0;
 }

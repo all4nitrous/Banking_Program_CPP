@@ -14,7 +14,7 @@ double withdraw(double balance);
 int main() 
 {
 
-    double balance = 123;
+    double balance = 0;
     int choice = 0;
 
     do {
@@ -27,6 +27,9 @@ int main()
         cout << "3. Withdraw Money" << endl;
         cout << "4. Exit" << endl;
         cin >> choice;
+
+        std::cin.clear();
+        fflush(stdin); // Helps clear the buffer if someone types incorrect input
 
         switch(choice)
         {
@@ -69,9 +72,34 @@ double deposit()
     cout << "Enter amount to be deposited : " << endl;
     cin >> amount;
 
+    if(amount > 0) {
+
+        return amount;
+    }
+    else {
+        cout << "That's not a valid amount: " << endl;
+        return 0;
+    }
+
     return amount;
 }
 double withdraw(double balance) 
 {
-    return 0;
+
+    double amount = 0;
+
+    cout << "Enter amount to be withdrawn: " << endl;
+    cin >> amount;
+
+    if(amount > balance) {
+        cout << "insufficient funds" << endl;
+        return 0;
+
+    } else if(amount < 0) {
+        cout << "That's not a valid amount" << endl;
+        return 0;
+    } else {
+        return amount;
+    }
+    
 }
